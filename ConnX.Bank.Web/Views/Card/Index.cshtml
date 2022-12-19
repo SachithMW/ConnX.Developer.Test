@@ -1,0 +1,52 @@
+﻿@model ConnX.Bank.Web.Models.Card.CardData
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center my-4">Check Card</h1>
+
+<div class="container">
+    <form method="post" asp-controller="Card" asp-action="Index" class="form-horizontal">
+        <div class="form-group">
+            <label for="cardNumber" class="col-sm-2 control-label">Card number:</label>
+            <div class="col-sm-10">
+                <input type="text" id="cardNumber" name="cardNumber" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Check card</button>
+            </div>
+        </div>
+        @if (Model != null)
+        {
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Card number:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.CardNumber</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Card type:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">@Model.CardType</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Card valid:</label>
+                <div class="col-sm-10">
+                    @if (Model.IsValid)
+                    {
+                        <p class="form-control-static text-primary">@Model.IsValid</p>
+                    }
+                    else
+                    {
+                        <p class="form-control-static text-danger">@Model.IsValid</p>
+                    }
+                </div>
+            </div>
+        }
+    </form>
+</div>
+
